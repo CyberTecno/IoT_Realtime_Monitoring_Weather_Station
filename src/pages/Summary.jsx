@@ -27,7 +27,7 @@ export default function Summary() {
           
           {/* Main Telemetry Hero */}
           <div className="col-span-12 lg:col-span-8 h-[400px] rounded-xl glass overflow-hidden relative group">
-            <div className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-105 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1440&q=80')] bg-cover bg-center"></div>
+            <div className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-105 transition-transform duration-700 bg-[url('/prasmul.jpg')] bg-cover bg-center"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
             
             <div className="absolute bottom-0 left-0 p-8 w-full flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">

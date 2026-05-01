@@ -4,9 +4,10 @@ export default function Layout({ children }) {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/', label: 'Summary', icon: 'dashboard' },
+    { path: '/', label: 'Dashboard', icon: 'dashboard' },
     { path: '/deep-dive', label: 'Deep Dive', icon: 'analytics' },
-    { path: '/interests', label: 'Interests', icon: 'insights' }
+    { path: '/interests', label: 'Interests', icon: 'insights' },
+    { path: '/developer', label: 'Developer', icon: 'engineering' }
   ];
 
   return (
