@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-body-base antialiased min-h-screen;
+    background: radial-gradient(circle at top right, #1d2027, #10131a);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  }
+
+  .glass-inset {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-border-top {
+    border-image: linear-gradient(45deg, rgba(255,255,255,0.15), transparent) 1;
+  }
+  
+  .cyan-glow {
+    text-shadow: 0 0 8px rgba(76, 215, 246, 0.5);
+  }
+  
+  .chart-glow {
+    filter: drop-shadow(0 0 8px rgba(76, 215, 246, 0.3));
+  }
+  
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #adc6ff, #4cd7f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom gauge styles */
+.gauge-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+.gauge-ring {
+  fill: none;
+  stroke-width: 10;
+  stroke: rgba(255,255,255,0.1);
+}
+.gauge-progress {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke: #4cd7f6;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 80;
+}
