@@ -103,7 +103,7 @@ export default function Interests() {
               </div>
             </div>
           </div>
-          <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
+          <div className="mt-6 pt-4 border-t border-outline-variant dark:border-white/10 flex justify-between items-center">
             <span className="text-label-caps text-on-surface-variant">3 NEW FACTS</span>
             <button className="text-primary text-label-caps hover:underline">NEXT FACT</button>
           </div>
@@ -161,14 +161,14 @@ export default function Interests() {
             <div className="space-y-4">
               <p className="text-label-caps text-on-surface-variant tracking-widest">EXPORT TOOLS</p>
               <div className="flex flex-col gap-3">
-                <button className="w-full flex items-center justify-between p-4 rounded-lg bg-surface-variant/50 border border-white/10 hover:bg-surface-variant transition-all group">
+                <button className="w-full flex items-center justify-between p-4 rounded-lg bg-surface-variant/50 border border-outline-variant dark:border-white/10 hover:bg-surface-variant transition-all group">
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary">csv</span>
                     <span className="font-body-base">Export last 24h as CSV</span>
                   </div>
                   <span className="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">download</span>
                 </button>
-                <button className="w-full flex items-center justify-between p-4 rounded-lg bg-surface-variant/50 border border-white/10 hover:bg-surface-variant transition-all group">
+                <button className="w-full flex items-center justify-between p-4 rounded-lg bg-surface-variant/50 border border-outline-variant dark:border-white/10 hover:bg-surface-variant transition-all group">
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary">table_chart</span>
                     <span className="font-body-base">Export Monthly Summary (PDF)</span>
@@ -177,7 +177,7 @@ export default function Interests() {
                 </button>
               </div>
             </div>
-            <div className="pt-4 border-t border-white/10 flex justify-between items-center text-on-surface-variant text-xs">
+            <div className="pt-4 border-t border-outline-variant dark:border-white/10 flex justify-between items-center text-on-surface-variant text-xs">
               <span>Database Size: 24.8 GB</span>
               <span>API Status: Normal</span>
             </div>

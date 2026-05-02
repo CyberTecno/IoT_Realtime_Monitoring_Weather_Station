@@ -75,7 +75,7 @@ export default function DeepDive() {
               className={`px-4 py-2 rounded-lg font-label-caps transition-all whitespace-nowrap ${
                 activeTab === tab
                   ? 'bg-secondary-container text-on-secondary'
-                  : 'text-on-surface-variant hover:bg-white/5'
+                  : 'text-on-surface-variant hover:bg-surface-container dark:bg-white/5'
               }`}
             >
               {tab}
@@ -94,7 +94,7 @@ export default function DeepDive() {
               <span className="material-symbols-outlined text-secondary text-sm">{info.icon}</span>
             </div>
             <div>
-              <div className="font-display-lg text-white">{current}{info.unit}</div>
+              <div className="font-display-lg text-on-surface dark:text-white">{current}{info.unit}</div>
               <div className="font-body-sm text-secondary flex items-center gap-1">
                 <span className="material-symbols-outlined text-xs">trending_up</span> Updated just now
               </div>
@@ -106,7 +106,7 @@ export default function DeepDive() {
               <span className="material-symbols-outlined text-on-surface-variant text-sm">arrow_upward</span>
             </div>
             <div>
-              <div className="font-display-lg text-white">{peak}{info.unit}</div>
+              <div className="font-display-lg text-on-surface dark:text-white">{peak}{info.unit}</div>
               <div className="font-body-sm text-on-surface-variant">Based on recent data</div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function DeepDive() {
               <span className="material-symbols-outlined text-on-surface-variant text-sm">arrow_downward</span>
             </div>
             <div>
-              <div className="font-display-lg text-white">{min}{info.unit}</div>
+              <div className="font-display-lg text-on-surface dark:text-white">{min}{info.unit}</div>
               <div className="font-body-sm text-on-surface-variant">Based on recent data</div>
             </div>
           </div>
@@ -124,8 +124,8 @@ export default function DeepDive() {
 
         {/* Main Trend Chart */}
         <div className="lg:col-span-3 glass-card rounded-xl overflow-hidden flex flex-col">
-          <div className="p-card-padding border-b border-white/10 flex justify-between items-center">
-            <h3 className="font-header-md text-white">24-Hour {info.label} Trend</h3>
+          <div className="p-card-padding border-b border-outline-variant dark:border-white/10 flex justify-between items-center">
+            <h3 className="font-header-md text-on-surface dark:text-white">24-Hour {info.label} Trend</h3>
             <div className="flex gap-4">
               <span className="flex items-center gap-2 font-label-caps text-on-surface-variant">
                 <span className="w-3 h-3 rounded-full" style={{ backgroundColor: info.color }}></span> Actual
@@ -161,8 +161,8 @@ export default function DeepDive() {
       {/* Historical Data Table Section */}
       <section className="space-y-stack-gap">
         <div className="flex items-center justify-between">
-          <h3 className="font-header-md text-white">Historical Telemetry</h3>
-          <button className="flex items-center gap-2 px-4 py-2 glass-inset rounded-lg font-label-caps text-secondary hover:bg-white/10 transition-all">
+          <h3 className="font-header-md text-on-surface dark:text-white">Historical Telemetry</h3>
+          <button className="flex items-center gap-2 px-4 py-2 glass-inset rounded-lg font-label-caps text-secondary hover:bg-surface-container-high dark:bg-white/10 transition-all">
             <span className="material-symbols-outlined text-sm">download</span> Export CSV
           </button>
         </div>
@@ -170,7 +170,7 @@ export default function DeepDive() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-white/5 border-b border-white/10">
+                <tr className="bg-surface-container dark:bg-white/5 border-b border-outline-variant dark:border-white/10">
                   <th className="px-6 py-4 font-label-caps text-on-surface-variant uppercase tracking-wider">Timestamp</th>
                   <th className="px-6 py-4 font-label-caps text-on-surface-variant uppercase tracking-wider">Sensor ID</th>
                   <th className="px-6 py-4 font-label-caps text-on-surface-variant uppercase tracking-wider">Reading</th>
@@ -180,16 +180,16 @@ export default function DeepDive() {
               </thead>
               <tbody className="font-data-mono">
                 {historical.slice(0, 10).map((row, idx) => (
-                  <tr key={row.id || idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                    <td className="px-6 py-4 text-white">{new Date(row.created_at).toLocaleString()}</td>
+                  <tr key={row.id || idx} className="border-b border-white/5 hover:bg-surface-container dark:bg-white/5 transition-colors">
+                    <td className="px-6 py-4 text-on-surface dark:text-white">{new Date(row.created_at).toLocaleString()}</td>
                     <td className="px-6 py-4 text-on-surface-variant">TMP-N04-A</td>
                     <td className="px-6 py-4 text-secondary">{row[col] != null ? row[col].toFixed(1) : '-'}{info.unit}</td>
                     <td className="px-6 py-4"><span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] uppercase font-bold border border-emerald-500/20">Nominal</span></td>
                     <td className="px-6 py-4 text-right text-emerald-400">-</td>
                   </tr>
                 ))}
-                <tr className="hover:bg-white/5 transition-colors">
-                  <td className="px-6 py-4 text-center font-label-caps text-on-surface-variant cursor-pointer hover:text-white" colSpan="5">
+                <tr className="hover:bg-surface-container dark:bg-white/5 transition-colors">
+                  <td className="px-6 py-4 text-center font-label-caps text-on-surface-variant cursor-pointer hover:text-on-surface dark:text-white" colSpan="5">
                     Load 45 More Readings...
                   </td>
                 </tr>

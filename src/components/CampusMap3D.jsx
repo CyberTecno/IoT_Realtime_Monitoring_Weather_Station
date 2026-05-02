@@ -36,17 +36,17 @@ function Island() {
 
       {/* Station Marker */}
       <Html position={[-1, 1, -1]} center className="pointer-events-none">
-        <div className="bg-slate-900/80 backdrop-blur-md border border-cyan-400 p-2 rounded text-[10px] text-white whitespace-nowrap">
+        <div className="bg-slate-900/80 backdrop-blur-md border border-primary dark:border-cyan-400 p-2 rounded text-[10px] text-on-surface dark:text-white whitespace-nowrap">
           <p className="font-bold">BSD STATION</p>
-          <p className="text-cyan-400">Active Scan</p>
+          <p className="text-primary dark:text-cyan-400">Active Scan</p>
         </div>
       </Html>
       
       {/* Anomaly Marker */}
       <Html position={[1.5, 1.2, 0.5]} center className="pointer-events-none">
-        <div className="bg-slate-900/80 backdrop-blur-md border border-tertiary p-2 rounded text-[10px] text-white whitespace-nowrap">
+        <div className="bg-slate-900/80 backdrop-blur-md border border-tertiary p-2 rounded text-[10px] text-on-surface dark:text-white whitespace-nowrap">
           <p className="font-bold text-tertiary">PACIFIC ANOMALY</p>
-          <p className="text-slate-300">Pressure Low</p>
+          <p className="text-on-surface-variant dark:text-slate-300">Pressure Low</p>
         </div>
       </Html>
     </group>
