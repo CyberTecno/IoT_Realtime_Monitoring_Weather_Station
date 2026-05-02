@@ -40,10 +40,6 @@ export default function Developer() {
                     <span className="material-symbols-outlined text-[16px]">code</span>
                     GitHub
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-white/5 hover:bg-surface-container-high dark:bg-white/10 border border-outline-variant dark:border-white/10 rounded-lg text-xs font-semibold text-on-surface dark:text-white transition-colors">
-                    <span className="material-symbols-outlined text-[16px]">work</span>
-                    LinkedIn
-                  </a>
                 </div>
               </div>
             </div>
@@ -80,10 +76,6 @@ export default function Developer() {
                   <a href="https://github.com/CyberTecno/IoT_Realtime_Monitoring_Weather_Station" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-white/5 hover:bg-surface-container-high dark:bg-white/10 border border-outline-variant dark:border-white/10 rounded-lg text-xs font-semibold text-on-surface dark:text-white transition-colors">
                     <span className="material-symbols-outlined text-[16px]">code</span>
                     GitHub
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-white/5 hover:bg-surface-container-high dark:bg-white/10 border border-outline-variant dark:border-white/10 rounded-lg text-xs font-semibold text-on-surface dark:text-white transition-colors">
-                    <span className="material-symbols-outlined text-[16px]">work</span>
-                    LinkedIn
                   </a>
                 </div>
               </div>
