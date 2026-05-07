@@ -1,22 +1,12 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
+import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Html } from '@react-three/drei';
 
-function WindParticles({ windSpeed, windDir }) {
-  const count = 300;
+function WindLines({ windSpeed, windDir }) {
+  const count = 150;
   const meshRef = useRef();
-  
-  const [positions, scales] = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const scales = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 12; // x
-      positions[i * 3 + 1] = Math.random() * 4; // y
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 12; // z
-      scales[i] = Math.random();
-    }
-    return [positions, scales];
-  }, [count]);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
 
   const windVector = useMemo(() => {
     const dirMap = {
@@ -26,43 +16,53 @@ function WindParticles({ windSpeed, windDir }) {
     return dirMap[windDir] || [1, 0];
   }, [windDir]);
 
+  const particles = useMemo(() => {
+    return Array.from({ length: count }, () => ({
+      x: (Math.random() - 0.5) * 12,
+      yBase: Math.random() * 4,
+      z: (Math.random() - 0.5) * 12,
+      speedFactor: 0.5 + Math.random() * 0.8,
+      length: 0.4 + Math.random() * 1.5,
+      phase: Math.random() * Math.PI * 2,
+    }));
+  }, [count]);
+
   useFrame((state, delta) => {
     if (!meshRef.current) return;
-    const positions = meshRef.current.geometry.attributes.position.array;
-    // Map real wind speed (km/h) to particle speed. e.g., 14km/h -> reasonable float speed
-    const speed = (windSpeed || 10) * 0.2; 
+    const speed = (windSpeed || 10) * 0.4;
+    const angle = Math.atan2(windVector[0], windVector[1]);
+    const time = state.clock.getElapsedTime();
     
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] += windVector[0] * speed * delta; // x
-      positions[i * 3 + 2] += windVector[1] * speed * delta; // z
+    particles.forEach((p, i) => {
+      // Move along wind direction
+      p.x += windVector[0] * speed * p.speedFactor * delta;
+      p.z += windVector[1] * speed * p.speedFactor * delta;
       
+      // Winding effect (beliuk-liuk)
+      const y = p.yBase + Math.sin(time * 2 + p.phase) * 0.2;
+      const swayAngle = angle + Math.sin(time * 3 + p.phase) * 0.1;
+
       // Loop around
-      if (positions[i * 3] > 6) positions[i * 3] -= 12;
-      if (positions[i * 3] < -6) positions[i * 3] += 12;
-      if (positions[i * 3 + 2] > 6) positions[i * 3 + 2] -= 12;
-      if (positions[i * 3 + 2] < -6) positions[i * 3 + 2] += 12;
-    }
-    meshRef.current.geometry.attributes.position.needsUpdate = true;
+      if (p.x > 6) p.x -= 12;
+      if (p.x < -6) p.x += 12;
+      if (p.z > 6) p.z -= 12;
+      if (p.z < -6) p.z += 12;
+
+      dummy.position.set(p.x, y, p.z);
+      dummy.rotation.set(0, swayAngle, 0);
+      dummy.scale.set(0.015, 0.015, p.length);
+      dummy.updateMatrix();
+      
+      meshRef.current.setMatrixAt(i, dummy.matrix);
+    });
+    meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
   return (
-    <points ref={meshRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-scale"
-          count={scales.length}
-          array={scales}
-          itemSize={1}
-        />
-      </bufferGeometry>
-      <pointsMaterial size={0.08} color="#4cd7f6" transparent opacity={0.6} sizeAttenuation={true} />
-    </points>
+    <instancedMesh ref={meshRef} args={[null, null, count]}>
+      <boxGeometry />
+      <meshBasicMaterial color="#4cd7f6" transparent opacity={0.3} depthWrite={false} />
+    </instancedMesh>
   );
 }
 
@@ -125,7 +125,7 @@ export default function CampusMap3D({ windSpeed = 10, windDir = 'W' }) {
         <pointLight position={[10, 10, 10]} intensity={1} color="#4cd7f6" />
         <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ffb786" />
         
-        <WindParticles windSpeed={windSpeed} windDir={windDir} />
+        <WindLines windSpeed={windSpeed} windDir={windDir} />
         
         <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
           <Island />
