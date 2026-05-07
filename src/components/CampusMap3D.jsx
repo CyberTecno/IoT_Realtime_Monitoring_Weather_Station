@@ -77,40 +77,50 @@ function Island() {
     <group ref={meshRef}>
       {/* Floating Base */}
       <mesh receiveShadow position={[0, -0.5, 0]}>
-        <cylinderGeometry args={[4, 3, 1, 64]} />
+        <cylinderGeometry args={[5, 4, 1, 64]} />
         <meshStandardMaterial color="#191b23" transparent opacity={0.8} />
       </mesh>
       
       {/* Grid Lines */}
-      <gridHelper args={[8, 16, '#4cd7f6', '#adc6ff']} position={[0, 0.01, 0]} />
+      <gridHelper args={[10, 20, '#4cd7f6', '#adc6ff']} position={[0, 0.01, 0]} />
 
       {/* Campus Buildings / Nodes */}
-      <mesh position={[-1, 0.25, -1]}>
-        <boxGeometry args={[0.5, 0.5, 0.5]} />
-        <meshStandardMaterial color="#adc6ff" />
+      
+      {/* William Soeryadjaya Building (Curved front) */}
+      <mesh position={[-2, 0.4, 1.5]}>
+        <cylinderGeometry args={[0.7, 0.7, 0.8, 32]} />
+        <meshStandardMaterial color="#8ba3d6" />
       </mesh>
-      <mesh position={[1.5, 0.4, 0.5]}>
-        <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial color="#adc6ff" />
+
+      {/* Eka Tjipta Widjaja Building */}
+      <mesh position={[-2.8, 0.3, 0]}>
+        <boxGeometry args={[0.8, 0.6, 0.8]} />
+        <meshStandardMaterial color="#7a92c5" />
       </mesh>
-      <mesh position={[0, 0.3, 1.5]}>
-        <boxGeometry args={[0.6, 0.6, 0.6]} />
-        <meshStandardMaterial color="#adc6ff" />
+
+      {/* Liem Sioe Liong & Sofjan Wanandi Building Area */}
+      <mesh position={[-0.8, 0.2, -0.5]}>
+        <boxGeometry args={[1.8, 0.4, 1]} />
+        <meshStandardMaterial color="#9cb4e5" />
+      </mesh>
+
+      {/* Collaborative STEM Laboratories (Tall V-shape approximated as tall box) */}
+      <mesh position={[0.5, 0.8, -1.5]}>
+        <boxGeometry args={[0.9, 1.6, 0.9]} />
+        <meshStandardMaterial color="#a0bfff" />
+      </mesh>
+
+      {/* Business School Building (Largest building on the right) */}
+      <mesh position={[2.8, 1.25, 0.5]}>
+        <boxGeometry args={[1.6, 2.5, 1.4]} />
+        <meshStandardMaterial color="#6a82b5" />
       </mesh>
 
       {/* Station Marker */}
-      <Html position={[-1, 1, -1]} center className="pointer-events-none">
+      <Html position={[0.5, 1.9, -1.5]} center className="pointer-events-none">
         <div className="bg-slate-900/80 backdrop-blur-md border border-primary dark:border-cyan-400 p-2 rounded text-[10px] text-on-surface dark:text-white whitespace-nowrap">
-          <p className="font-bold">BSD STATION</p>
+          <p className="font-bold">COLLABORATIVE STEM</p>
           <p className="text-primary dark:text-cyan-400">Active Scan</p>
-        </div>
-      </Html>
-      
-      {/* Anomaly Marker */}
-      <Html position={[1.5, 1.2, 0.5]} center className="pointer-events-none">
-        <div className="bg-slate-900/80 backdrop-blur-md border border-tertiary p-2 rounded text-[10px] text-on-surface dark:text-white whitespace-nowrap">
-          <p className="font-bold text-tertiary">PACIFIC ANOMALY</p>
-          <p className="text-on-surface-variant dark:text-slate-300">Pressure Low</p>
         </div>
       </Html>
     </group>
