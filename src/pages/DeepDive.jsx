@@ -77,6 +77,34 @@ export default function DeepDive() {
     return { chartData: processedChartData, current: curr, peak: pk, min: mn };
   }, [historical, activeTab, col]);
 
+  const handleExportCSV = () => {
+    if (!historical || historical.length === 0) return;
+
+    const headers = Object.keys(historical[0]);
+    const csvRows = [];
+    csvRows.push(headers.join(','));
+    
+    for (const row of historical) {
+      const values = headers.map(header => {
+        const val = row[header] !== null && row[header] !== undefined ? row[header] : '';
+        const escaped = ('' + val).replace(/"/g, '""');
+        return `"${escaped}"`;
+      });
+      csvRows.push(values.join(','));
+    }
+    
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `pmu_telemetry_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <main className="pt-24 pb-32 px-margin max-w-7xl mx-auto space-y-gutter">
       {/* Metric Selector & Title */}
@@ -181,9 +209,10 @@ export default function DeepDive() {
       <section className="space-y-stack-gap">
         <div className="flex items-center justify-between">
           <h3 className="font-header-md text-on-surface dark:text-white">Historical Telemetry</h3>
-          <button className="flex items-center gap-2 px-4 py-2 glass-inset rounded-lg font-label-caps text-secondary hover:bg-surface-container-high dark:bg-white/10 transition-all">
+          <button onClick={handleExportCSV} className="flex items-center gap-2 px-4 py-2 glass-inset rounded-lg font-label-caps text-secondary hover:bg-surface-container-high dark:bg-white/10 transition-all">
             <span className="material-symbols-outlined text-sm">download</span> Export CSV
           </button>
+
         </div>
         <div className="glass-card rounded-xl overflow-hidden">
           <div className="overflow-x-auto">

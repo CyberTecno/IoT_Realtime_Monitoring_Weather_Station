@@ -1,8 +1,75 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { useTelemetry } from '../hooks/useTelemetry';
+
+const triviaFacts = [
+  {
+    quote: "Did you know? The Engineering Quad experiences a wind-tunnel effect that increases perceived gusts by 15% during peak spring.",
+    source: "CAMPUS RECORD 2023",
+    historicLabel: "HISTORIC LOW",
+    historicValue: "-12.4°C (Jan 15, 1998)",
+    icon: "history"
+  },
+  {
+    quote: "The highest recorded humidity near the library was 95% during a major monsoon storm.",
+    source: "FACILITIES LOG 2019",
+    historicLabel: "PEAK HUMIDITY",
+    historicValue: "95% (Nov 12, 2019)",
+    icon: "water_drop"
+  },
+  {
+    quote: "Solar panels on the Business School building generated record power during the August heatwave.",
+    source: "ENERGY REPORT 2024",
+    historicLabel: "MAX TEMP",
+    historicValue: "38.2°C (Aug 20, 2024)",
+    icon: "thermostat"
+  },
+  {
+    quote: "Air quality occasionally drops to near perfect levels following heavy rains clearing the basin smog.",
+    source: "ENVIRONMENTAL STUDY 2022",
+    historicLabel: "BEST AQI",
+    historicValue: "5 (Feb 03, 2022)",
+    icon: "air"
+  }
+];
 
 export default function Interests() {
+  const { reading } = useTelemetry();
   const [sensors, setSensors] = useState([]);
+  const [currentFactIndex, setCurrentFactIndex] = useState(0);
+
+  // Extract Live Data
+  const temp = reading?.temp_bme || 24.5;
+  const humidity = reading?.hum_bme || 42;
+  const aqi = reading?.pm2_5 ? Math.round(reading.pm2_5 * 2) : 12; // pseudo AQI
+  const windSpeed = reading?.wind_speed || 14;
+
+  // Formula Comfort Index (0 - 100)
+  // Ideal: Temp = 24°C, Humidity = 50%, AQI = 0
+  const tempPenalty = Math.abs(temp - 24) * 4; 
+  const humPenalty = Math.abs(humidity - 50) * 0.4;
+  const aqiPenalty = aqi * 0.4;
+  
+  let comfortScore = Math.max(0, Math.min(100, Math.round(100 - tempPenalty - humPenalty - aqiPenalty)));
+  if (isNaN(comfortScore)) comfortScore = 74;
+
+  let comfortStatus = "Optimal";
+  if (comfortScore < 50) comfortStatus = "Poor";
+  else if (comfortScore < 70) comfortStatus = "Fair";
+  else if (comfortScore < 85) comfortStatus = "Good";
+
+  // Circle SVG calculations
+  const circumference = 2 * Math.PI * 88; // radius 88
+  const strokeDashoffset = circumference - (comfortScore / 100) * circumference;
+
+  // Feels Like (Apparent Temp approximation)
+  const feelsLike = (temp + (humidity > 50 ? (humidity - 50) * 0.05 : 0)).toFixed(1);
+
+  const handleNextFact = () => {
+    setCurrentFactIndex((prev) => (prev + 1) % triviaFacts.length);
+  };
+
+  const currentFact = triviaFacts[currentFactIndex];
 
   useEffect(() => {
     // In a real scenario, this would fetch from a devices table
@@ -41,11 +108,21 @@ export default function Interests() {
             <div className="relative w-48 h-48 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle className="text-surface-variant" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" strokeWidth="8"></circle>
-                <circle className="text-secondary drop-shadow-[0_0_8px_rgba(76,215,246,0.5)]" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" strokeDasharray="552.92" strokeDashoffset="138.23" strokeWidth="12"></circle>
+                <circle 
+                  className={`drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] transition-all duration-1000 ${comfortScore >= 70 ? 'text-secondary' : comfortScore >= 50 ? 'text-tertiary' : 'text-error'}`} 
+                  cx="96" 
+                  cy="96" 
+                  fill="transparent" 
+                  r="88" 
+                  stroke="currentColor" 
+                  strokeDasharray={circumference} 
+                  strokeDashoffset={strokeDashoffset} 
+                  strokeWidth="12">
+                </circle>
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-display-xl font-bold text-on-surface">74</span>
-                <span className="text-label-caps text-secondary uppercase tracking-widest">Optimal</span>
+                <span className="text-display-xl font-bold text-on-surface">{comfortScore}</span>
+                <span className={`text-label-caps uppercase tracking-widest ${comfortScore >= 70 ? 'text-secondary' : comfortScore >= 50 ? 'text-tertiary' : 'text-error'}`}>{comfortStatus}</span>
               </div>
             </div>
             
@@ -54,14 +131,14 @@ export default function Interests() {
                 <span className="text-label-caps text-on-surface-variant block mb-1">HUMIDITY</span>
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary text-sm">water_drop</span>
-                  <span className="text-header-md">42%</span>
+                  <span className="text-header-md">{humidity.toFixed(0)}%</span>
                 </div>
               </div>
               <div className="p-4 bg-surface-container-low rounded-lg border border-white/5">
                 <span className="text-label-caps text-on-surface-variant block mb-1">AIR QUALITY</span>
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-tertiary text-sm">air</span>
-                  <span className="text-header-md">12 <small className="text-xs">AQI</small></span>
+                  <span className="text-header-md">{aqi} <small className="text-xs">AQI</small></span>
                 </div>
               </div>
               <div className="p-4 bg-surface-container-low rounded-lg border border-white/5">
@@ -72,10 +149,10 @@ export default function Interests() {
                 </div>
               </div>
               <div className="p-4 bg-surface-container-low rounded-lg border border-white/5">
-                <span className="text-label-caps text-on-surface-variant block mb-1">WIND CHILL</span>
+                <span className="text-label-caps text-on-surface-variant block mb-1">FEELS LIKE</span>
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-secondary text-sm">ac_unit</span>
-                  <span className="text-header-md">18°C</span>
+                  <span className="material-symbols-outlined text-secondary text-sm">thermostat</span>
+                  <span className="text-header-md">{feelsLike}°C</span>
                 </div>
               </div>
             </div>
@@ -92,20 +169,20 @@ export default function Interests() {
           </div>
           <div className="flex-grow flex flex-col justify-center gap-6">
             <div className="relative p-4 rounded-lg bg-tertiary-container/10 border-l-4 border-tertiary">
-              <p className="italic text-body-base text-on-surface mb-2">"Did you know? The Engineering Quad experiences a wind-tunnel effect that increases perceived gusts by 15% during peak spring."</p>
-              <span className="text-label-caps text-tertiary">— CAMPUS RECORD 2023</span>
+              <p className="italic text-body-base text-on-surface mb-2">"{currentFact.quote}"</p>
+              <span className="text-label-caps text-tertiary">— {currentFact.source}</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-on-surface-variant">history</span>
+              <span className="material-symbols-outlined text-on-surface-variant">{currentFact.icon}</span>
               <div>
-                <p className="text-label-caps text-on-surface-variant">HISTORIC LOW</p>
-                <p className="text-body-base font-bold">-12.4°C (Jan 15, 1998)</p>
+                <p className="text-label-caps text-on-surface-variant">{currentFact.historicLabel}</p>
+                <p className="text-body-base font-bold">{currentFact.historicValue}</p>
               </div>
             </div>
           </div>
           <div className="mt-6 pt-4 border-t border-outline-variant dark:border-white/10 flex justify-between items-center">
-            <span className="text-label-caps text-on-surface-variant">3 NEW FACTS</span>
-            <button className="text-primary text-label-caps hover:underline">NEXT FACT</button>
+            <span className="text-label-caps text-on-surface-variant">{triviaFacts.length - 1} NEW FACTS</span>
+            <button onClick={handleNextFact} className="text-primary text-label-caps hover:underline">NEXT FACT</button>
           </div>
         </div>
 

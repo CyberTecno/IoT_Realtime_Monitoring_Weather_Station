@@ -86,43 +86,71 @@ function Island() {
 
       {/* Campus Buildings / Nodes */}
       
-      {/* William Soeryadjaya Building (Curved front) */}
-      <mesh position={[-2, 0.4, 1.5]}>
-        <cylinderGeometry args={[0.7, 0.7, 0.8, 32]} />
-        <meshStandardMaterial color="#8ba3d6" />
-      </mesh>
+      {/* William Soeryadjaya Building */}
+      <group position={[-2, 0.4, 1.5]}>
+        <mesh>
+          <cylinderGeometry args={[0.7, 0.7, 0.8, 32]} />
+          <meshStandardMaterial color="#8ba3d6" />
+        </mesh>
+        <Html position={[0, 0.7, 0]} center className="pointer-events-none">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-1.5 px-2 rounded text-[8px] text-white whitespace-nowrap shadow-lg">
+            <p className="font-bold">William Soeryadjaya</p>
+          </div>
+        </Html>
+      </group>
 
       {/* Eka Tjipta Widjaja Building */}
-      <mesh position={[-2.8, 0.3, 0]}>
-        <boxGeometry args={[0.8, 0.6, 0.8]} />
-        <meshStandardMaterial color="#7a92c5" />
-      </mesh>
+      <group position={[-2.8, 0.3, 0]}>
+        <mesh>
+          <boxGeometry args={[0.8, 0.6, 0.8]} />
+          <meshStandardMaterial color="#7a92c5" />
+        </mesh>
+        <Html position={[0, 0.6, 0]} center className="pointer-events-none">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-1.5 px-2 rounded text-[8px] text-white whitespace-nowrap shadow-lg">
+            <p className="font-bold">Eka Tjipta Widjaja</p>
+          </div>
+        </Html>
+      </group>
 
       {/* Liem Sioe Liong & Sofjan Wanandi Building Area */}
-      <mesh position={[-0.8, 0.2, -0.5]}>
-        <boxGeometry args={[1.8, 0.4, 1]} />
-        <meshStandardMaterial color="#9cb4e5" />
-      </mesh>
+      <group position={[-0.8, 0.2, -0.5]}>
+        <mesh>
+          <boxGeometry args={[1.8, 0.4, 1]} />
+          <meshStandardMaterial color="#9cb4e5" />
+        </mesh>
+        <Html position={[0, 0.5, 0]} center className="pointer-events-none">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-1.5 px-2 rounded text-[8px] text-white whitespace-nowrap shadow-lg">
+            <p className="font-bold">Liem Sioe Liong & Sofjan Wanandi</p>
+          </div>
+        </Html>
+      </group>
 
-      {/* Collaborative STEM Laboratories (Tall V-shape approximated as tall box) */}
-      <mesh position={[0.5, 0.8, -1.5]}>
-        <boxGeometry args={[0.9, 1.6, 0.9]} />
-        <meshStandardMaterial color="#a0bfff" />
-      </mesh>
+      {/* Collaborative STEM Laboratories */}
+      <group position={[0.5, 0.8, -1.5]}>
+        <mesh>
+          <boxGeometry args={[0.9, 1.6, 0.9]} />
+          <meshStandardMaterial color="#a0bfff" />
+        </mesh>
+        <Html position={[0, 1.1, 0]} center className="pointer-events-none">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-primary dark:border-cyan-400 p-2 rounded text-[9px] text-white whitespace-nowrap shadow-lg shadow-primary/20">
+            <p className="font-bold text-base">COLLABORATIVE STEM</p>
+            <p className="text-primary dark:text-cyan-400 mt-0.5">Active Scan</p>
+          </div>
+        </Html>
+      </group>
 
-      {/* Business School Building (Largest building on the right) */}
-      <mesh position={[2.8, 1.25, 0.5]}>
-        <boxGeometry args={[1.6, 2.5, 1.4]} />
-        <meshStandardMaterial color="#6a82b5" />
-      </mesh>
-
-      {/* Station Marker */}
-      <Html position={[0.5, 1.9, -1.5]} center className="pointer-events-none">
-        <div className="bg-slate-900/80 backdrop-blur-md border border-primary dark:border-cyan-400 p-2 rounded text-[10px] text-on-surface dark:text-white whitespace-nowrap">
-          <p className="font-bold">COLLABORATIVE STEM</p>
-          <p className="text-primary dark:text-cyan-400">Active Scan</p>
-        </div>
-      </Html>
+      {/* Business School Building */}
+      <group position={[2.8, 1.25, 0.5]}>
+        <mesh>
+          <boxGeometry args={[1.6, 2.5, 1.4]} />
+          <meshStandardMaterial color="#6a82b5" />
+        </mesh>
+        <Html position={[0, 1.6, 0]} center className="pointer-events-none">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-white/20 p-1.5 px-2 rounded text-[8px] text-white whitespace-nowrap shadow-lg">
+            <p className="font-bold">Business School</p>
+          </div>
+        </Html>
+      </group>
     </group>
   );
 }

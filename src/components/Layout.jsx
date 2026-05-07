@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Layout({ children }) {
   const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     const savedMode = localStorage.getItem('theme');
@@ -14,6 +15,11 @@ export default function Layout({ children }) {
     } else {
       document.documentElement.classList.remove('dark');
     }
+
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   const toggleDarkMode = () => {
@@ -53,6 +59,7 @@ export default function Layout({ children }) {
           <span className="sm:block md:hidden text-md font-bold tracking-wider uppercase text-on-surface dark:text-white font-inter whitespace-nowrap">PMU Weather</span>
         </div>
         
+        {/* Desktop Nav Actions */}
         <div className="hidden md:flex items-center space-x-2 lg:space-x-6">
           <nav className="flex gap-1 lg:gap-4">
             {navLinks.map((link) => (
@@ -71,31 +78,42 @@ export default function Layout({ children }) {
           </nav>
           
           <div className="flex items-center gap-4 ml-6 border-l border-outline-variant dark:border-white/10 pl-6">
+            <div className="font-data-mono text-sm text-primary dark:text-cyan-400 font-bold tracking-wider mr-2">
+              {currentTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+            </div>
             <button 
               onClick={toggleDarkMode}
               className="relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high dark:bg-white/10 transition-colors text-muted dark:text-slate-400 hover:text-on-surface dark:text-white"
               aria-label="Toggle Dark Mode"
             >
-              {/* Moon Icon (Shows in Light Mode to switch to Dark) */}
-              <span 
-                className={`material-symbols-outlined absolute transition-all duration-500 ${!isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`}
-              >
-                dark_mode
-              </span>
-              {/* Sun Icon (Shows in Dark Mode to switch to Light) */}
-              <span 
-                className={`material-symbols-outlined absolute transition-all duration-500 ${isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}
-              >
-                light_mode
-              </span>
+              {/* Moon Icon */}
+              <span className={`material-symbols-outlined absolute transition-all duration-500 ${!isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`}>dark_mode</span>
+              {/* Sun Icon */}
+              <span className={`material-symbols-outlined absolute transition-all duration-500 ${isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}>light_mode</span>
             </button>
-            <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden bg-white">
-              <img 
-                alt="AIR Logo" 
-                className="w-full h-full object-contain p-0.5"
-                src="/air-logo.png"
-              />
+            <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden bg-white shrink-0">
+              <img alt="AIR Logo" className="w-full h-full object-contain p-0.5" src="/air-logo.png" />
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Header Actions */}
+        <div className="flex md:hidden items-center gap-2">
+          <div className="font-data-mono text-[10px] text-primary dark:text-cyan-400 font-bold tracking-wider mr-1">
+            {currentTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}
+          </div>
+          <button 
+            onClick={toggleDarkMode}
+            className="relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high dark:bg-white/10 transition-colors text-muted dark:text-slate-400 hover:text-on-surface dark:text-white"
+            aria-label="Toggle Dark Mode"
+          >
+            {/* Moon Icon */}
+            <span className={`material-symbols-outlined absolute transition-all duration-500 ${!isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`}>dark_mode</span>
+            {/* Sun Icon */}
+            <span className={`material-symbols-outlined absolute transition-all duration-500 ${isDarkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}>light_mode</span>
+          </button>
+          <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden bg-white shrink-0">
+            <img alt="AIR Logo" className="w-full h-full object-contain p-0.5" src="/air-logo.png" />
           </div>
         </div>
       </header>
