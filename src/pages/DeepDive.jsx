@@ -22,6 +22,7 @@ export default function DeepDive() {
   const { historical, loading } = useTelemetry();
   const tabs = ['Temp', 'Humidity', 'AQI', 'Wind', 'UV'];
   const [activeTab, setActiveTab] = useState('Temp');
+  const [visibleCount, setVisibleCount] = useState(10);
   
   const info = metricInfo[activeTab];
   const col = tabToColumn[activeTab];
@@ -45,6 +46,34 @@ export default function DeepDive() {
       actual: item[col] || 0
     }));
 
+    // Add forecast data points
+    if (processedChartData.length > 5) {
+      const windowSize = 5;
+      const recentPoints = processedChartData.slice(-windowSize);
+      
+      let sumChange = 0;
+      for (let i = 1; i < recentPoints.length; i++) {
+        sumChange += (recentPoints[i].actual - recentPoints[i-1].actual);
+      }
+      const avgChange = sumChange / (windowSize - 1);
+      
+      const lastPoint = processedChartData[processedChartData.length - 1];
+      const lastDate = new Date(sorted[sorted.length - 1].created_at);
+      
+      lastPoint.forecast = lastPoint.actual;
+      
+      for (let i = 1; i <= 6; i++) {
+        const futureDate = new Date(lastDate.getTime() + (i * 10 * 1000));
+        const futureVal = lastPoint.actual + (avgChange * i);
+        const safeVal = futureVal < 0 ? 0 : futureVal;
+        
+        processedChartData.push({
+          time: futureDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+          forecast: safeVal
+        });
+      }
+    }
+
     return { chartData: processedChartData, current: curr, peak: pk, min: mn };
   }, [historical, activeTab, col]);
 
@@ -54,7 +83,7 @@ export default function DeepDive() {
       <section className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="font-display-lg text-primary tracking-tight">Analytical Deep Dive</h1>
-          <p className="font-body-sm text-on-surface-variant">Real-time telemetry from Station North-04</p>
+          <p className="font-body-sm text-on-surface-variant">Real-time telemetry from STEM Rooftop</p>
         </div>
         <div className="glass-inset rounded-xl p-1 flex gap-1 overflow-x-auto">
           {tabs.map((tab) => (
@@ -141,6 +170,7 @@ export default function DeepDive() {
                   itemStyle={{ color: info.color }}
                 />
                 <Area type="monotone" dataKey="actual" stroke={info.color} strokeWidth={3} fillOpacity={1} fill={`url(#colorActual-${activeTab})`} />
+                <Area type="monotone" dataKey="forecast" stroke={info.color} strokeOpacity={0.6} strokeWidth={2} strokeDasharray="5 5" fill="none" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -168,7 +198,7 @@ export default function DeepDive() {
                 </tr>
               </thead>
               <tbody className="font-data-mono">
-                {historical.slice(0, 10).map((row, idx) => (
+                {historical.slice(0, visibleCount).map((row, idx) => (
                   <tr key={row.id || idx} className="border-b border-white/5 hover:bg-surface-container dark:bg-white/5 transition-colors">
                     <td className="px-6 py-4 text-on-surface dark:text-white">{new Date(row.created_at).toLocaleString()}</td>
                     <td className="px-6 py-4 text-on-surface-variant">TMP-N04-A</td>
@@ -177,11 +207,16 @@ export default function DeepDive() {
                     <td className="px-6 py-4 text-right text-emerald-400">-</td>
                   </tr>
                 ))}
-                <tr className="hover:bg-surface-container dark:bg-white/5 transition-colors">
-                  <td className="px-6 py-4 text-center font-label-caps text-on-surface-variant cursor-pointer hover:text-on-surface dark:text-white" colSpan="5">
-                    Load 45 More Readings...
-                  </td>
-                </tr>
+                {visibleCount < historical.length && (
+                  <tr 
+                    className="hover:bg-surface-container dark:bg-white/5 transition-colors cursor-pointer"
+                    onClick={() => setVisibleCount(prev => prev + 10)}
+                  >
+                    <td className="px-6 py-4 text-center font-label-caps text-on-surface-variant hover:text-on-surface dark:text-white" colSpan="5">
+                      Load More
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

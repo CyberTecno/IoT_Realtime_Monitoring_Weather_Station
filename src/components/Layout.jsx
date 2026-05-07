@@ -39,24 +39,27 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-background text-on-background font-body-base antialiased pb-24 md:pb-0 transition-colors duration-500">
       {/* TopAppBar */}
-      <header className="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-surface-container dark:bg-white/5 dark:bg-slate-900/40 backdrop-blur-md border-b border-outline-variant dark:border-white/10 shadow-xl shadow-black/20">
-        <div className="flex items-center gap-4">
-          <img 
-            alt="Prasetiya Mulya Logo" 
-            className="h-8 w-auto object-contain" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLMqWsOvieeKGRuLK8-Dw1vYvy_GoIJuta2n-TrGf_NUIZojZr19Y59EXi-2vWM8YSVTP3i6BdigslqZEDEhrapSe5MXjbCGdhHEuyJROySo04kydYbPBB3HbaBbMJYHzocv3StFsFshcrIvxo9o3BPmdRXolj21q9y1hX1aE29mmHXa_A3nrdIl2lMvfMz0ooS51mhR1kejvAPptEc0nNkn_jAXb7W4pH-a7eG40-0_wwsKK8o2Jd6c8fcrnddvz88RJM9Mrmec8"
-          />
-          <span className="hidden sm:block text-lg font-bold tracking-widest uppercase text-on-surface dark:text-white dark:text-cyan-50 font-inter">Prasetiya Mulya Weather Station</span>
-          <span className="sm:hidden text-md font-bold tracking-widest uppercase text-on-surface dark:text-white font-inter">PMU Weather</span>
+      <header className="fixed top-0 w-full z-50 flex justify-between items-center px-4 lg:px-6 py-4 bg-surface-container dark:bg-white/5 dark:bg-slate-900/40 backdrop-blur-md border-b border-outline-variant dark:border-white/10 shadow-xl shadow-black/20">
+        <div className="flex items-center gap-3 lg:gap-4 flex-shrink-0">
+          <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden bg-white shrink-0">
+            <img 
+              alt="Prasetiya Mulya Logo" 
+              className="w-full h-full object-contain p-0.5" 
+              src="/prasmul-logo-new.png"
+            />
+          </div>
+          <span className="hidden xl:block text-lg font-bold tracking-widest uppercase text-on-surface dark:text-white dark:text-cyan-50 font-inter whitespace-nowrap">Prasetiya Mulya Weather Station</span>
+          <span className="hidden md:block xl:hidden text-md font-bold tracking-wider uppercase text-on-surface dark:text-white font-inter whitespace-nowrap">PMU Weather Station</span>
+          <span className="sm:block md:hidden text-md font-bold tracking-wider uppercase text-on-surface dark:text-white font-inter whitespace-nowrap">PMU Weather</span>
         </div>
         
-        <div className="hidden md:flex items-center space-x-8">
-          <nav className="flex gap-6">
+        <div className="hidden md:flex items-center space-x-2 lg:space-x-6">
+          <nav className="flex gap-1 lg:gap-4">
             {navLinks.map((link) => (
               <Link 
                 key={link.path} 
                 to={link.path}
-                className={`font-inter tracking-tight px-3 py-1 transition-colors duration-200 ${
+                className={`font-inter tracking-tight px-2 lg:px-3 py-1 text-sm lg:text-base transition-colors duration-200 whitespace-nowrap ${
                   location.pathname === link.path 
                     ? 'text-primary dark:text-cyan-400 border-b-2 border-primary dark:border-cyan-400' 
                     : 'text-muted dark:text-slate-400 hover:bg-surface-container-high dark:bg-white/10 rounded-md'
@@ -86,10 +89,11 @@ export default function Layout({ children }) {
                 light_mode
               </span>
             </button>
-            <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden">
+            <div className="w-8 h-8 rounded-full border border-primary dark:border-cyan-400/30 overflow-hidden bg-white">
               <img 
-                alt="Research Faculty Profile" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_zMSN_i_XlmogmAvLG_9GlZbo1z8iR9l3StjPtdSdRA1yufqWfBaRg2GO9C2w0h_DyoO3qKP_ui7zJcaQKFKyDoOV8jxuzW6WE53vPu6UqEdc4V2aW5Xn1JvpjyMVqAkxqoR0TsmeaOsDg5hsNJq5yDUuR1m2ssuyPr9_z3TUUddgCk4g-fQP71JLjv9WD6zhwG0uKgHzFsZFQy84z4Ra58X3QYh62Gr4IJ6RiNw5TU50rO5gKwPWxUzFDZn_UZBvnpudNwOpX18"
+                alt="AIR Logo" 
+                className="w-full h-full object-contain p-0.5"
+                src="/air-logo.png"
               />
             </div>
           </div>

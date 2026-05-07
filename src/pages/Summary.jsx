@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CampusMap3D from '../components/CampusMap3D';
+import WeatherForecast from '../components/WeatherForecast';
 import { useTelemetry } from '../hooks/useTelemetry';
 
 export default function Summary() {
@@ -214,6 +215,11 @@ export default function Summary() {
               </div>
             </div>
           </div>
+        </section>
+        
+        {/* Weather Forecast Row */}
+        <section className="mt-gutter rounded-xl glass p-card-padding">
+          <WeatherForecast />
         </section>
       </div>
     </main>
