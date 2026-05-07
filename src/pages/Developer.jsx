@@ -32,7 +32,7 @@ export default function Developer() {
                 </div>
                 <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-2">I Gede Arinata Kusuma Putra</h2>
                 <p className="text-primary dark:text-cyan-400 font-medium text-sm mb-4">AI and Robotics 2023</p>
-                <p className="text-outline dark:text-slate-400 text-sm leading-relaxed mb-6">
+                <p className="text-muted dark:text-slate-400 text-sm leading-relaxed mb-6">
                   Specializing in the intersection of IoT and environmental data science. Research focuses on building resilient, real-time monitoring systems bridging hardware and high-fidelity UIs.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
@@ -69,7 +69,7 @@ export default function Developer() {
                 </div>
                 <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-2">Jessie Charidon Yeoh</h2>
                 <p className="text-primary dark:text-cyan-400 font-medium text-sm mb-4">AI and Robotics 2023</p>
-                <p className="text-outline dark:text-slate-400 text-sm leading-relaxed mb-6">
+                <p className="text-muted dark:text-slate-400 text-sm leading-relaxed mb-6">
                   Expert in IoT sensor integration and ESP32 firmware development. Focuses on low-power sensor networks and robust data acquisition for environmental monitoring.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
@@ -95,7 +95,7 @@ export default function Developer() {
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">code_blocks</span>
               </div>
               <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2">Next.js</h3>
-              <p className="text-sm text-outline dark:text-slate-400">App Router architecture for optimized server-side rendering and routing.</p>
+              <p className="text-sm text-muted dark:text-slate-400">App Router architecture for optimized server-side rendering and routing.</p>
             </div>
 
             {/* Supabase */}
@@ -104,7 +104,7 @@ export default function Developer() {
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">database</span>
               </div>
               <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2">Supabase</h3>
-              <p className="text-sm text-outline dark:text-slate-400">Real-time PostgreSQL database with immediate data broadcast capabilities.</p>
+              <p className="text-sm text-muted dark:text-slate-400">Real-time PostgreSQL database with immediate data broadcast capabilities.</p>
             </div>
 
             {/* Chart.js */}
@@ -113,7 +113,7 @@ export default function Developer() {
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">monitoring</span>
               </div>
               <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2">Chart.js</h3>
-              <p className="text-sm text-outline dark:text-slate-400">Performant data visualization for high-density weather telemetry.</p>
+              <p className="text-sm text-muted dark:text-slate-400">Performant data visualization for high-density weather telemetry.</p>
             </div>
 
             {/* ESP32 */}
@@ -122,7 +122,7 @@ export default function Developer() {
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">memory</span>
               </div>
               <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2">ESP32</h3>
-              <p className="text-sm text-outline dark:text-slate-400">Hardware core for data acquisition from diverse campus sensors.</p>
+              <p className="text-sm text-muted dark:text-slate-400">Hardware core for data acquisition from diverse campus sensors.</p>
             </div>
 
           </div>
@@ -132,7 +132,7 @@ export default function Developer() {
         <div className="mb-20">
           <div className="glass rounded-2xl p-10 text-center relative overflow-hidden">
             <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-4 relative z-10">System Architecture</h2>
-            <p className="text-outline dark:text-slate-400 mb-16 relative z-10">Real-time data flow from physical sensors to your screen</p>
+            <p className="text-muted dark:text-slate-400 mb-16 relative z-10">Real-time data flow from physical sensors to your screen</p>
 
             {/* Architecture Flow Diagram */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-4xl mx-auto relative z-10">
@@ -219,12 +219,12 @@ export default function Developer() {
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="font-bold text-on-surface dark:text-white font-inter">PMU Monitoring</span>
-            <span className="text-outline-variant dark:text-slate-500 text-sm">| © 2024 Technical Division</span>
+            <span className="text-muted-soft dark:text-slate-500 text-sm">| © 2024 Technical Division</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-outline dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-outline dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Documentation</a>
-            <a href="#" className="text-outline dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">API Keys</a>
+            <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Documentation</a>
+            <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">API Keys</a>
           </div>
         </div>
       </footer>

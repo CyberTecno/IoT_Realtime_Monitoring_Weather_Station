@@ -59,7 +59,7 @@ export default function Layout({ children }) {
                 className={`font-inter tracking-tight px-3 py-1 transition-colors duration-200 ${
                   location.pathname === link.path 
                     ? 'text-primary dark:text-cyan-400 border-b-2 border-primary dark:border-cyan-400' 
-                    : 'text-outline dark:text-slate-400 hover:bg-surface-container-high dark:bg-white/10 rounded-md'
+                    : 'text-muted dark:text-slate-400 hover:bg-surface-container-high dark:bg-white/10 rounded-md'
                 }`}
               >
                 {link.label}
@@ -70,7 +70,7 @@ export default function Layout({ children }) {
           <div className="flex items-center gap-4 ml-6 border-l border-outline-variant dark:border-white/10 pl-6">
             <button 
               onClick={toggleDarkMode}
-              className="relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high dark:bg-white/10 transition-colors text-outline dark:text-slate-400 hover:text-on-surface dark:text-white"
+              className="relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high dark:bg-white/10 transition-colors text-muted dark:text-slate-400 hover:text-on-surface dark:text-white"
               aria-label="Toggle Dark Mode"
             >
               {/* Moon Icon (Shows in Light Mode to switch to Dark) */}
@@ -107,12 +107,12 @@ export default function Layout({ children }) {
             <Link 
               key={link.path}
               to={link.path}
-              className={`flex flex-col items-center justify-center px-6 py-2 transition-all ${
-                isActive ? 'text-primary dark:text-cyan-400 bg-surface-container-high dark:bg-white/10 rounded-xl' : 'text-outline dark:text-slate-400 hover:text-on-surface dark:text-white'
+              className={`flex flex-1 flex-col items-center justify-center px-2 py-2 transition-all ${
+                isActive ? 'text-primary dark:text-cyan-400 bg-surface-container-high dark:bg-white/10 rounded-xl' : 'text-muted dark:text-slate-400 hover:text-on-surface dark:text-white'
               }`}
             >
               <span className="material-symbols-outlined" style={isActive ? {fontVariationSettings: "'FILL' 1"} : {}}>{link.icon}</span>
-              <span className="font-inter text-[11px] font-semibold uppercase tracking-wider">{link.label}</span>
+              <span className="font-inter text-[10px] font-semibold uppercase tracking-wider">{link.label}</span>
             </Link>
           );
         })}

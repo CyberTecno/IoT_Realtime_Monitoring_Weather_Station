@@ -57,7 +57,7 @@ export function useTelemetry() {
         { event: 'INSERT', schema: 'public', table: 'sensor_readings' },
         (payload) => {
           setReading(payload.new);
-          setHistorical(prev => [payload.new, ...prev].slice(0, 50));
+          setHistorical(prev => [payload.new, ...prev].slice(0, 1440));
         }
       )
       .subscribe();

@@ -39,22 +39,11 @@ export default function DeepDive() {
     // Sort ascending for chart (oldest first)
     const sorted = [...historical].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
     
-    const processedChartData = [];
-    const interval = 15 * 60 * 1000; // 15 mins
-    let currentTarget = new Date(sorted[0].created_at).getTime();
-
-    for (const item of sorted) {
-      const itemTime = new Date(item.created_at).getTime();
-      if (itemTime >= currentTarget) {
-        processedChartData.push({
-          time: new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          actual: item[col] || 0
-        });
-        while (currentTarget <= itemTime) {
-          currentTarget += interval;
-        }
-      }
-    }
+    // Map all data points directly to show real-time updates
+    const processedChartData = sorted.map(item => ({
+      time: new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      actual: item[col] || 0
+    }));
 
     return { chartData: processedChartData, current: curr, peak: pk, min: mn };
   }, [historical, activeTab, col]);

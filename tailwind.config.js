@@ -54,7 +54,11 @@ export default {
         "outline": "var(--color-outline)",
         "outline-variant": "var(--color-outline-variant)",
         "inverse-surface": "var(--color-inverse-surface)",
-        "inverse-on-surface": "var(--color-inverse-on-surface)"
+        "inverse-on-surface": "var(--color-inverse-on-surface)",
+        "muted": "var(--color-muted)",
+        "muted-soft": "var(--color-muted-soft)",
+        "hairline": "var(--color-hairline)",
+        "hairline-soft": "var(--color-hairline-soft)"
       },
       borderRadius: {
         "DEFAULT": "0.5rem",
@@ -72,22 +76,35 @@ export default {
         "stack-gap": "12px"
       },
       fontFamily: {
-        "header-md": ["Inter", "sans-serif"],
-        "body-sm": ["Inter", "sans-serif"],
-        "display-lg": ["Inter", "sans-serif"],
-        "label-caps": ["Inter", "sans-serif"],
-        "body-base": ["Inter", "sans-serif"],
-        "display-xl": ["Inter", "sans-serif"],
-        "data-mono": ["Inter", "monospace"]
+        "serif": ["Copernicus", "Tiempos Headline", "Garamond", "Times New Roman", "serif"],
+        "sans": ["StyreneB", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        "mono": ["JetBrains Mono", "ui-monospace", "monospace"],
+        "header-md": ["StyreneB", "Inter", "sans-serif"],
+        "body-sm": ["StyreneB", "Inter", "sans-serif"],
+        "display-lg": ["Copernicus", "Tiempos Headline", "Garamond", "Times New Roman", "serif"],
+        "label-caps": ["StyreneB", "Inter", "sans-serif"],
+        "body-base": ["StyreneB", "Inter", "sans-serif"],
+        "display-xl": ["Copernicus", "Tiempos Headline", "Garamond", "Times New Roman", "serif"],
+        "display-md": ["Copernicus", "Tiempos Headline", "Garamond", "Times New Roman", "serif"],
+        "display-sm": ["Copernicus", "Tiempos Headline", "Garamond", "Times New Roman", "serif"],
+        "data-mono": ["JetBrains Mono", "ui-monospace", "monospace"]
       },
       fontSize: {
-        "header-md": ["20px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
-        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
-        "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-        "body-base": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
-        "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-        "data-mono": ["14px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+        "header-md": ["18px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+        "body-sm": ["14px", {"lineHeight": "1.55", "letterSpacing": "0", "fontWeight": "400"}],
+        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-1px", "fontWeight": "400"}],
+        "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "1.5px", "fontWeight": "500"}],
+        "body-base": ["16px", {"lineHeight": "1.55", "letterSpacing": "0", "fontWeight": "400"}],
+        "display-xl": ["64px", {"lineHeight": "1.05", "letterSpacing": "-1.5px", "fontWeight": "400"}],
+        "display-md": ["36px", {"lineHeight": "1.15", "letterSpacing": "-0.5px", "fontWeight": "400"}],
+        "display-sm": ["28px", {"lineHeight": "1.2", "letterSpacing": "-0.3px", "fontWeight": "400"}],
+        "title-lg": ["22px", {"lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "500"}],
+        "title-md": ["18px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+        "title-sm": ["16px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+        "data-mono": ["14px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+        "button": ["14px", {"lineHeight": "1.0", "letterSpacing": "0", "fontWeight": "500"}],
+        "nav-link": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+        "caption": ["13px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}]
       }
     },
   },

@@ -34,18 +34,18 @@ export default function Summary() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-3 py-1 bg-primary dark:bg-cyan-400 text-on-secondary-fixed text-label-caps rounded-full font-bold">LIVE TELEMETRY</span>
-                  <span className="text-outline dark:text-slate-400 text-label-caps">STATION PMU-01 • BSD CAMPUS</span>
+                  <span className="text-muted dark:text-slate-400 text-label-caps">STATION PMU-01 • BSD CAMPUS</span>
                 </div>
                 <h1 className="font-display-xl text-on-surface dark:text-white mb-2">{temp}°C</h1>
                 <p className="text-on-surface-variant dark:text-slate-300 font-header-md">Partly Cloudy • Feels like {Number(temp) + 2.5}°C</p>
               </div>
               <div className="flex gap-4">
                 <div className="text-right">
-                  <p className="text-label-caps text-outline-variant dark:text-slate-500 mb-1">HUMIDITY</p>
+                  <p className="text-label-caps text-muted-soft dark:text-slate-500 mb-1">HUMIDITY</p>
                   <p className="font-data-mono text-primary dark:text-cyan-400 text-header-md">{humidity}%</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-label-caps text-outline-variant dark:text-slate-500 mb-1">DEW POINT</p>
+                  <p className="text-label-caps text-muted-soft dark:text-slate-500 mb-1">DEW POINT</p>
                   <p className="font-data-mono text-primary dark:text-cyan-400 text-header-md">19°C</p>
                 </div>
               </div>
@@ -60,7 +60,7 @@ export default function Summary() {
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <h3 className="font-header-md text-on-surface dark:text-white">Air Quality</h3>
-                  <p className="text-body-sm text-outline dark:text-slate-400">Atmospheric Pollutants</p>
+                  <p className="text-body-sm text-muted dark:text-slate-400">Atmospheric Pollutants</p>
                 </div>
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">air</span>
               </div>
@@ -78,21 +78,21 @@ export default function Summary() {
                 </div>
                 <div className="text-center">
                   <p className="font-header-md text-on-surface dark:text-white mb-1">{aqi < 50 ? 'Good Condition' : aqi < 100 ? 'Moderate' : 'Unhealthy'}</p>
-                  <p className="text-body-sm text-outline dark:text-slate-400">PM2.5: {pm25} µg/m³</p>
+                  <p className="text-body-sm text-muted dark:text-slate-400">PM2.5: {pm25} µg/m³</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-3 gap-2 mt-6">
                 <div className="text-center p-2 rounded-lg bg-surface-container dark:bg-white/5">
-                  <p className="text-[10px] text-outline-variant dark:text-slate-500 font-bold mb-1">PM1.0</p>
+                  <p className="text-[10px] text-muted-soft dark:text-slate-500 font-bold mb-1">PM1.0</p>
                   <p className="text-xs font-data-mono text-on-surface dark:text-white">{reading?.pm1_0 || '8.2'}</p>
                 </div>
                 <div className="text-center p-2 rounded-lg bg-surface-container dark:bg-white/5">
-                  <p className="text-[10px] text-outline-variant dark:text-slate-500 font-bold mb-1">PM2.5</p>
+                  <p className="text-[10px] text-muted-soft dark:text-slate-500 font-bold mb-1">PM2.5</p>
                   <p className="text-xs font-data-mono text-on-surface dark:text-white">{pm25}</p>
                 </div>
                 <div className="text-center p-2 rounded-lg bg-surface-container dark:bg-white/5">
-                  <p className="text-[10px] text-outline-variant dark:text-slate-500 font-bold mb-1">PM10</p>
+                  <p className="text-[10px] text-muted-soft dark:text-slate-500 font-bold mb-1">PM10</p>
                   <p className="text-xs font-data-mono text-on-surface dark:text-white">{reading?.pm10 || '15.5'}</p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function Summary() {
           {/* Wind Stats */}
           <div className="rounded-xl glass p-card-padding">
             <div className="flex justify-between items-center mb-6">
-              <span className="text-label-caps text-outline dark:text-slate-400">WIND DYNAMICS</span>
+              <span className="text-label-caps text-muted dark:text-slate-400">WIND DYNAMICS</span>
               <span className="material-symbols-outlined text-primary dark:text-cyan-400">navigation</span>
             </div>
             <div className="flex items-center gap-6">
@@ -114,8 +114,8 @@ export default function Summary() {
                 <span className="absolute top-1 text-[10px] font-bold">N</span>
               </div>
               <div>
-                <p className="font-display-lg text-on-surface dark:text-white">{windSpeed} <span className="text-body-base text-outline dark:text-slate-400">km/h</span></p>
-                <p className="text-body-sm text-outline dark:text-slate-400">Direction: {windDir}</p>
+                <p className="font-display-lg text-on-surface dark:text-white">{windSpeed} <span className="text-body-base text-muted dark:text-slate-400">km/h</span></p>
+                <p className="text-body-sm text-muted dark:text-slate-400">Direction: {windDir}</p>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function Summary() {
           {/* Light & Pressure */}
           <div className="rounded-xl glass p-card-padding">
             <div className="flex justify-between items-center mb-6">
-              <span className="text-label-caps text-outline dark:text-slate-400">LIGHT & PRESSURE</span>
+              <span className="text-label-caps text-muted dark:text-slate-400">LIGHT & PRESSURE</span>
               <span className="material-symbols-outlined text-primary dark:text-cyan-400">light_mode</span>
             </div>
             <div className="space-y-4">
@@ -141,7 +141,7 @@ export default function Summary() {
           {/* Seismic Awareness */}
           <div className="rounded-xl glass p-card-padding">
             <div className="flex justify-between items-center mb-6">
-              <span className="text-label-caps text-outline dark:text-slate-400">SEISMIC AWARENESS</span>
+              <span className="text-label-caps text-muted dark:text-slate-400">SEISMIC AWARENESS</span>
               <span className="material-symbols-outlined text-error">vibration</span>
             </div>
             <div className="flex items-end gap-2 h-16">
@@ -154,7 +154,7 @@ export default function Summary() {
               <div className="w-full h-10 bg-surface-container-high dark:bg-white/10 rounded-sm"></div>
               <div className={`w-full h-14 ${isVibAlert ? 'bg-error/40 border-t border-error' : 'bg-primary dark:bg-cyan-400/20 border-t border-primary dark:border-cyan-400'} rounded-sm`}></div>
             </div>
-            <p className={`text-[10px] font-bold mt-4 uppercase ${isVibAlert ? 'text-error' : 'text-outline-variant dark:text-slate-500'}`}>Status: {vibStatus}</p>
+            <p className={`text-[10px] font-bold mt-4 uppercase ${isVibAlert ? 'text-error' : 'text-muted-soft dark:text-slate-500'}`}>Status: {vibStatus}</p>
           </div>
         </div>
 
@@ -163,7 +163,7 @@ export default function Summary() {
           <div className="flex justify-between items-center mb-8 relative z-10">
             <div>
               <h2 className="font-display-lg text-on-surface dark:text-white">Global Environmental Live View</h2>
-              <p className="text-body-sm text-outline dark:text-slate-400">Prasetiya Mulya University (-6.3003, 106.6399)</p>
+              <p className="text-body-sm text-muted dark:text-slate-400">Prasetiya Mulya University (-6.3003, 106.6399)</p>
             </div>
             <div className="flex gap-2">
               <button 
@@ -200,7 +200,7 @@ export default function Summary() {
             <div className="absolute bottom-6 left-6 glass p-4 rounded-xl flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-32 h-2 bg-gradient-to-r from-blue-900 via-primary dark:via-cyan-400 to-tertiary rounded-full"></div>
-                <span className="text-[10px] font-bold text-outline dark:text-slate-400">-50°C to +50°C</span>
+                <span className="text-[10px] font-bold text-muted dark:text-slate-400">-50°C to +50°C</span>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
