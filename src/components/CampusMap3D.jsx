@@ -1,6 +1,70 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Html } from '@react-three/drei';
+
+function WindParticles({ windSpeed, windDir }) {
+  const count = 300;
+  const meshRef = useRef();
+  
+  const [positions, scales] = useMemo(() => {
+    const positions = new Float32Array(count * 3);
+    const scales = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 12; // x
+      positions[i * 3 + 1] = Math.random() * 4; // y
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 12; // z
+      scales[i] = Math.random();
+    }
+    return [positions, scales];
+  }, [count]);
+
+  const windVector = useMemo(() => {
+    const dirMap = {
+      'N': [0, 1], 'NE': [-0.707, 0.707], 'E': [-1, 0], 'SE': [-0.707, -0.707],
+      'S': [0, -1], 'SW': [0.707, -0.707], 'W': [1, 0], 'NW': [1, 0.707]
+    };
+    return dirMap[windDir] || [1, 0];
+  }, [windDir]);
+
+  useFrame((state, delta) => {
+    if (!meshRef.current) return;
+    const positions = meshRef.current.geometry.attributes.position.array;
+    // Map real wind speed (km/h) to particle speed. e.g., 14km/h -> reasonable float speed
+    const speed = (windSpeed || 10) * 0.2; 
+    
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] += windVector[0] * speed * delta; // x
+      positions[i * 3 + 2] += windVector[1] * speed * delta; // z
+      
+      // Loop around
+      if (positions[i * 3] > 6) positions[i * 3] -= 12;
+      if (positions[i * 3] < -6) positions[i * 3] += 12;
+      if (positions[i * 3 + 2] > 6) positions[i * 3 + 2] -= 12;
+      if (positions[i * 3 + 2] < -6) positions[i * 3 + 2] += 12;
+    }
+    meshRef.current.geometry.attributes.position.needsUpdate = true;
+  });
+
+  return (
+    <points ref={meshRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={positions.length / 3}
+          array={positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-scale"
+          count={scales.length}
+          array={scales}
+          itemSize={1}
+        />
+      </bufferGeometry>
+      <pointsMaterial size={0.08} color="#4cd7f6" transparent opacity={0.6} sizeAttenuation={true} />
+    </points>
+  );
+}
 
 function Island() {
   const meshRef = useRef();
@@ -53,13 +117,16 @@ function Island() {
   );
 }
 
-export default function CampusMap3D() {
+export default function CampusMap3D({ windSpeed = 10, windDir = 'W' }) {
   return (
     <div className="absolute inset-0 w-full h-full bg-slate-950/50">
       <Canvas shadows camera={{ position: [0, 4, 8], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#4cd7f6" />
         <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ffb786" />
+        
+        <WindParticles windSpeed={windSpeed} windDir={windDir} />
+        
         <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
           <Island />
         </Float>

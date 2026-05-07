@@ -182,7 +182,7 @@ export default function Summary() {
           
           <div className="flex-1 relative rounded-xl overflow-hidden bg-slate-950">
             {viewMode === 'wind' ? (
-              <CampusMap3D />
+              <CampusMap3D windSpeed={Number(windSpeed)} windDir={windDir} />
             ) : (
               <iframe 
                 width="100%" 
