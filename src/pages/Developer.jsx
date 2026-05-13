@@ -33,7 +33,7 @@ export default function Developer() {
                 <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-2">I Gede Arinata Kusuma Putra</h2>
                 <p className="text-primary dark:text-cyan-400 font-medium text-sm mb-4">AI and Robotics 2023</p>
                 <p className="text-muted dark:text-slate-400 text-sm leading-relaxed mb-6">
-                  Specializing in the intersection of IoT and environmental data science. Research focuses on building resilient, real-time monitoring systems bridging hardware and high-fidelity UIs.
+                  AI & Robotics student building intelligent systems that bridge automation, real-time data, and human-centered technology. Passionate about turning futuristic ideas into impactful digital solutions.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                   <a href="https://github.com/CyberTecno/IoT_Realtime_Monitoring_Weather_Station" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-white/5 hover:bg-surface-container-high dark:bg-white/10 border border-outline-variant dark:border-white/10 rounded-lg text-xs font-semibold text-on-surface dark:text-white transition-colors">
@@ -70,7 +70,7 @@ export default function Developer() {
                 <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-2">Jessie Charidon Yeoh</h2>
                 <p className="text-primary dark:text-cyan-400 font-medium text-sm mb-4">AI and Robotics 2023</p>
                 <p className="text-muted dark:text-slate-400 text-sm leading-relaxed mb-6">
-                  Expert in IoT sensor integration and ESP32 firmware development. Focuses on low-power sensor networks and robust data acquisition for environmental monitoring.
+                  Exploring the intersection of artificial intelligence, robotics, and real-world applications. Focused on creating adaptive systems that solve meaningful problems through technology.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                   <a href="https://github.com/CyberTecno/IoT_Realtime_Monitoring_Weather_Station" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-surface-container dark:bg-white/5 hover:bg-surface-container-high dark:bg-white/10 border border-outline-variant dark:border-white/10 rounded-lg text-xs font-semibold text-on-surface dark:text-white transition-colors">
