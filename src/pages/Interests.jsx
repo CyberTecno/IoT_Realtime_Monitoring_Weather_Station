@@ -189,9 +189,9 @@ export default function Interests() {
     // or aggregate from sensor_readings. For now, mocking based on design.
     setSensors([
       { id: 'ESP32', name: 'Main Weather Tower', status: 'ONLINE', latency: '12ms', type: 'developer_board' },
-      { id: 'EKSTERNAL SENSOR', name: 'Rain Gauge, Windspeed, Wind Direction', status: 'ONLINE', latency: '24ms', type: 'developer_board' },
-      { id: 'INTERNAL SENSOR', name: 'Internal Sensor', status: 'ONLINE', latency: '12ms', type: 'developer_board' },
-      { id: 'SOLAR PANEL', status: 'ONLINE', latency: '18ms', type: 'developer_board' },
+      { id: 'EKSTERNAL SENSOR', name: 'Rain Gauge, Windspeed, Wind Direction', status: 'ON', latency: '24ms', type: 'developer_board' },
+      { id: 'INTERNAL SENSOR', name: 'Internal Sensor in Box', status: 'ON', latency: '12ms', type: 'developer_board' },
+      { id: 'SOLAR PANEL', status: 'ON', latency: '18ms', type: 'developer_board' },
     ]);
   }, []);
 
