@@ -74,7 +74,7 @@ export default function Summary() {
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center rotate-90">
                     <span className="font-display-lg text-white drop-shadow-md">{aqi}</span>
-                    <span className="text-label-caps text-cyan-400 drop-shadow-md">AQI</span>
+                    <span className="text-label-caps text-white-400 drop-shadow-md">AQI</span>
                   </div>
                 </div>
                 <div className="text-center">
