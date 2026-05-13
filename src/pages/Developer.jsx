@@ -19,8 +19,8 @@ export default function Developer() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary dark:from-cyan-400 to-blue-600 animate-spin-slow opacity-50 blur-sm"></div>
                 <div className="w-40 h-40 rounded-full border-2 border-primary dark:border-cyan-400/50 p-1 relative z-10 bg-background overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400&auto=format&fit=crop"
-                    alt="Kevin Prasetiya"
+                    src="/images/cartoon_man.png"
+                    alt="I Gede Arinata Kusuma Putra"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -56,8 +56,8 @@ export default function Developer() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary dark:from-cyan-400 to-blue-600 animate-spin-slow opacity-50 blur-sm"></div>
                 <div className="w-40 h-40 rounded-full border-2 border-primary dark:border-cyan-400/50 p-1 relative z-10 bg-background overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?q=80&w=400&auto=format&fit=crop"
-                    alt="Hansen Vincentius"
+                    src="/images/cartoon_woman.png"
+                    alt="Jessie Charidon Yeoh"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -95,7 +95,7 @@ export default function Developer() {
                 <span className="material-symbols-outlined text-primary dark:text-cyan-400">code_blocks</span>
               </div>
               <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2">Next.js</h3>
-              <p className="text-sm text-muted dark:text-slate-400">App Router architecture for optimized server-side rendering and routing.</p>
+              <p className="text-sm text-muted dark:text-slate-400">App Router architecture for optimized server side rendering and routing.</p>
             </div>
 
             {/* Supabase */}
@@ -132,7 +132,7 @@ export default function Developer() {
         <div className="mb-20">
           <div className="glass rounded-2xl p-10 text-center relative overflow-hidden">
             <h2 className="text-3xl font-display-lg text-on-surface dark:text-white mb-4 relative z-10">System Architecture</h2>
-            <p className="text-muted dark:text-slate-400 mb-16 relative z-10">Real-time data flow from physical sensors to your screen</p>
+            <p className="text-muted dark:text-slate-400 mb-16 relative z-10">Real-time DataFlow from Physical Sensors to Your Screen</p>
 
             {/* Architecture Flow Diagram */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-4xl mx-auto relative z-10">
@@ -160,7 +160,7 @@ export default function Developer() {
                 <div className="w-24 h-24 rounded-2xl glass flex items-center justify-center border-outline dark:border-white/20 mb-4 shadow-lg shadow-black/50">
                   <span className="material-symbols-outlined text-primary dark:text-cyan-400 text-4xl">memory</span>
                 </div>
-                <span className="text-[10px] font-bold tracking-widest uppercase text-on-surface dark:text-white">ESP32 Controller</span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-on-surface dark:text-white">ESP32</span>
               </div>
 
               {/* Arrow */}
@@ -181,7 +181,7 @@ export default function Developer() {
                     <span className="material-symbols-outlined text-primary dark:text-cyan-400 text-5xl">bolt</span>
                   </div>
                 </div>
-                <span className="text-[10px] font-bold tracking-widest uppercase text-on-surface dark:text-white mt-2">Supabase Real-time</span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-on-surface dark:text-white mt-2">Supabase for Real-time Databases</span>
               </div>
 
               {/* Arrow */}
@@ -206,7 +206,7 @@ export default function Developer() {
 
             {/* Architecture description text */}
             <div className="mt-16 max-w-2xl mx-auto glass p-6 rounded-xl border-outline-variant dark:border-white/10 relative z-10 text-sm text-on-surface-variant dark:text-slate-300 leading-relaxed">
-              Environmental data is sampled at <span className="text-primary dark:text-cyan-400 font-bold">1Hz</span> via the ESP32, pushed to Supabase via a secure WebSocket connection, and instantly distributed to all connected clients using the <span className="text-primary dark:text-cyan-400 font-bold">Postgres Changes</span> broadcast system.
+              Weather and environmental conditions are sampled at <span className="text-primary dark:text-cyan-400 font-bold">1Hz</span> via the ESP32, pushed to Supabase via a secure WebSocket connection, and instantly distributed to all connected clients using the <span className="text-primary dark:text-cyan-400 font-bold">Postgres Changes</span> broadcast system.
             </div>
 
           </div>
@@ -218,13 +218,12 @@ export default function Developer() {
       <footer className="w-full border-t border-outline-variant dark:border-white/10 pt-6 pb-6 px-6 mt-auto">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-on-surface dark:text-white font-inter">PMU Monitoring</span>
-            <span className="text-muted-soft dark:text-slate-500 text-sm">| © 2024 Technical Division</span>
+            <span className="font-bold text-on-surface dark:text-white font-inter">PMU MONITORING</span>
+            <span className="text-muted-soft dark:text-slate-500 text-sm">| © AI & Robotics Students 2023</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">Documentation</a>
-            <a href="#" className="text-muted dark:text-slate-400 hover:text-on-surface dark:text-white transition-colors">API Keys</a>
           </div>
         </div>
       </footer>
