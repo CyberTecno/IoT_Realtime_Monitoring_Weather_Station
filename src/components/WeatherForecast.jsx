@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 // WMO Weather interpretation codes mapped to Emoji
 const getWeatherDetails = (code) => {
-  if (code === 0) return { icon: '☀️', description: 'Cerah', color: 'text-amber-400' };
-  if (code === 1 || code === 2) return { icon: '⛅', description: 'Cerah Berawan', color: 'text-amber-400' };
-  if (code === 3) return { icon: '☁️', description: 'Berawan', color: 'text-slate-400' };
-  if (code >= 45 && code <= 48) return { icon: '🌫️', description: 'Berkabut', color: 'text-slate-400' };
+  if (code === 0) return { icon: 'light_mode', description: 'Cerah', color: 'text-amber-500' };
+  if (code === 1 || code === 2) return { icon: 'partly_cloudy_day', description: 'Cerah Berawan', color: 'text-amber-400' };
+  if (code === 3) return { icon: 'cloud', description: 'Berawan', color: 'text-slate-400' };
+  if (code >= 45 && code <= 48) return { icon: 'fog', description: 'Berkabut', color: 'text-slate-400' };
   if ((code >= 51 && code <= 57) || (code >= 61 && code <= 67) || (code >= 80 && code <= 82)) {
-    return { icon: '🌧️', description: 'Hujan', color: 'text-blue-400' };
+    return { icon: 'rainy', description: 'Hujan', color: 'text-primary dark:text-cyan-400' };
   }
-  if (code >= 71 && code <= 77 || code === 85 || code === 86) return { icon: '🌨️', description: 'Bersalju', color: 'text-cyan-200' };
-  if (code >= 95 && code <= 99) return { icon: '⛈️', description: 'Badai Petir', color: 'text-yellow-500' };
-  return { icon: '⛅', description: 'Tidak Diketahui', color: 'text-slate-400' };
+  if (code >= 71 && code <= 77 || code === 85 || code === 86) return { icon: 'snowing', description: 'Bersalju', color: 'text-cyan-200' };
+  if (code >= 95 && code <= 99) return { icon: 'thunderstorm', description: 'Badai Petir', color: 'text-error' };
+  return { icon: 'partly_cloudy_day', description: 'Tidak Diketahui', color: 'text-slate-400' };
 };
 
 const daysID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
@@ -87,16 +87,16 @@ export default function WeatherForecast() {
         return (
           <div 
             key={day.date} 
-            className={`flex flex-col items-center justify-center min-w-[80px] p-4 rounded-[20px] transition-all duration-300 ${
+            className={`flex flex-col items-center justify-center min-w-[90px] p-4 rounded-xl transition-all duration-300 ${
               isToday 
-                ? 'bg-[#f4f5f6] dark:bg-white/10' 
-                : 'bg-transparent hover:bg-surface-container dark:hover:bg-white/5'
+                ? 'glass border-primary/30 dark:border-cyan-400/30 shadow-sm' 
+                : 'bg-transparent hover:bg-surface-container dark:hover:bg-white/5 border border-transparent'
             }`}
           >
-            <span className={`text-lg mb-2 font-inter ${isToday ? 'text-on-surface dark:text-white font-medium' : 'text-on-surface dark:text-white font-normal'}`}>
+            <span className={`text-label-caps mb-3 ${isToday ? 'text-primary dark:text-cyan-400 font-bold' : 'text-muted dark:text-slate-400 font-bold'}`}>
               {day.dayName}
             </span>
-            <span className="text-[40px] drop-shadow-sm mb-2 leading-none" title={day.description}>
+            <span className={`material-symbols-outlined text-[36px] drop-shadow-sm mb-3 leading-none ${day.color}`} title={day.description}>
               {day.icon}
             </span>
             <div className="flex items-baseline gap-1.5 font-inter">
