@@ -60,10 +60,10 @@ export default function Summary() {
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h3 className="font-header-md text-on-surface dark:text-white">Air Quality</h3>
-                  <p className="text-body-sm text-muted dark:text-slate-400">Atmospheric Pollutants</p>
+                  <h3 className="font-header-md text-white drop-shadow-md">Air Quality</h3>
+                  <p className="text-body-sm text-slate-200 drop-shadow-md">Atmospheric Pollutants</p>
                 </div>
-                <span className="material-symbols-outlined text-primary dark:text-cyan-400">air</span>
+                <span className="material-symbols-outlined text-cyan-400 drop-shadow-md">air</span>
               </div>
 
               <div className="flex-1 flex flex-col items-center justify-center">
@@ -73,13 +73,13 @@ export default function Summary() {
                     <circle className="gauge-progress" cx="60" cy="60" r="50"></circle>
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center rotate-90">
-                    <span className="font-display-lg text-on-surface dark:text-white">{aqi}</span>
-                    <span className="text-label-caps text-primary dark:text-cyan-400">AQI</span>
+                    <span className="font-display-lg text-white drop-shadow-md">{aqi}</span>
+                    <span className="text-label-caps text-cyan-400 drop-shadow-md">AQI</span>
                   </div>
                 </div>
                 <div className="text-center">
-                  <p className="font-header-md text-on-surface dark:text-white mb-1">{aqi < 50 ? 'Good Condition' : aqi < 100 ? 'Moderate' : 'Unhealthy'}</p>
-                  <p className="text-body-sm text-muted dark:text-slate-400">PM2.5: {pm25} µg/m³</p>
+                  <p className="font-header-md text-white drop-shadow-md mb-1">{aqi < 50 ? 'Good Condition' : aqi < 100 ? 'Moderate' : 'Unhealthy'}</p>
+                  <p className="text-body-sm text-slate-200 drop-shadow-md">PM2.5: {pm25} µg/m³</p>
                 </div>
               </div>
 
