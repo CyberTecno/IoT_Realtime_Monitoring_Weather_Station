@@ -46,10 +46,10 @@ export default function Interests() {
 
   // Formula Comfort Index (0 - 100)
   // Ideal: Temp = 24°C, Humidity = 50%, AQI = 0
-  const tempPenalty = Math.abs(temp - 24) * 4; 
+  const tempPenalty = Math.abs(temp - 24) * 4;
   const humPenalty = Math.abs(humidity - 50) * 0.4;
   const aqiPenalty = aqi * 0.4;
-  
+
   let comfortScore = Math.max(0, Math.min(100, Math.round(100 - tempPenalty - humPenalty - aqiPenalty)));
   if (isNaN(comfortScore)) comfortScore = 74;
 
@@ -83,7 +83,7 @@ export default function Interests() {
     const headers = Object.keys(recentData[0]);
     const csvRows = [];
     csvRows.push(headers.join(','));
-    
+
     for (const row of recentData) {
       const values = headers.map(header => {
         const val = row[header] !== null && row[header] !== undefined ? row[header] : '';
@@ -92,7 +92,7 @@ export default function Interests() {
       });
       csvRows.push(values.join(','));
     }
-    
+
     const csvString = csvRows.join('\n');
     const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -108,7 +108,7 @@ export default function Interests() {
   const handleExportPDF = () => {
     const printWindow = window.open('', '_blank');
     if (!printWindow) return;
-    
+
     printWindow.document.write(`
       <html>
         <head>
@@ -178,7 +178,7 @@ export default function Interests() {
     `);
     printWindow.document.close();
     printWindow.focus();
-    
+
     setTimeout(() => {
       printWindow.print();
     }, 500);
@@ -188,10 +188,10 @@ export default function Interests() {
     // In a real scenario, this would fetch from a devices table
     // or aggregate from sensor_readings. For now, mocking based on design.
     setSensors([
-      { id: 'ESP32-CORE-01', name: 'Main Weather Tower', status: 'ONLINE', latency: '12ms', type: 'developer_board' },
-      { id: 'ESP32-QUAD-02', name: 'Engineering Lawn', status: 'ONLINE', latency: '24ms', type: 'developer_board' },
-      { id: 'ESP32-GYM-05', name: 'Sports Complex', status: 'OFFLINE', latency: 'No Signal', type: 'developer_board' },
-      { id: 'ESP32-LAB-09', name: 'Physics Dept Roof', status: 'ONLINE', latency: '18ms', type: 'developer_board' },
+      { id: 'ESP32', name: 'Main Weather Tower', status: 'ONLINE', latency: '12ms', type: 'developer_board' },
+      { id: 'EKSTERNAL SENSOR', name: 'Rain Gauge, Windspeed, Wind Direction', status: 'ONLINE', latency: '24ms', type: 'developer_board' },
+      { id: 'INTERNAL SENSOR', name: 'Internal Sensor', status: 'ONLINE', latency: '12ms', type: 'developer_board' },
+      { id: 'SOLAR PANEL', status: 'ONLINE', latency: '18ms', type: 'developer_board' },
     ]);
   }, []);
 
@@ -205,7 +205,7 @@ export default function Interests() {
 
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-        
+
         {/* Campus Comfort Index - Gauge */}
         <div className="md:col-span-8 glass-card rounded-xl p-card-padding flex flex-col justify-between min-h-[320px]">
           <div>
@@ -215,21 +215,21 @@ export default function Interests() {
             </h2>
             <p className="text-body-sm text-on-surface-variant">Combined Biometeorological Score</p>
           </div>
-          
+
           <div className="flex flex-col md:flex-row items-center justify-around gap-8 py-8">
             {/* Gauge Visualization */}
             <div className="relative w-48 h-48 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle className="text-surface-variant" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" strokeWidth="8"></circle>
-                <circle 
-                  className={`drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] transition-all duration-1000 ${comfortScore >= 70 ? 'text-secondary' : comfortScore >= 50 ? 'text-tertiary' : 'text-error'}`} 
-                  cx="96" 
-                  cy="96" 
-                  fill="transparent" 
-                  r="88" 
-                  stroke="currentColor" 
-                  strokeDasharray={circumference} 
-                  strokeDashoffset={strokeDashoffset} 
+                <circle
+                  className={`drop-shadow-[0_0_8px_rgba(76,215,246,0.5)] transition-all duration-1000 ${comfortScore >= 70 ? 'text-secondary' : comfortScore >= 50 ? 'text-tertiary' : 'text-error'}`}
+                  cx="96"
+                  cy="96"
+                  fill="transparent"
+                  r="88"
+                  stroke="currentColor"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
                   strokeWidth="12">
                 </circle>
               </svg>
@@ -238,7 +238,7 @@ export default function Interests() {
                 <span className={`text-label-caps uppercase tracking-widest ${comfortScore >= 70 ? 'text-secondary' : comfortScore >= 50 ? 'text-tertiary' : 'text-error'}`}>{comfortStatus}</span>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
               <div className="p-4 bg-surface-container-low rounded-lg border border-white/5">
                 <span className="text-label-caps text-on-surface-variant block mb-1">HUMIDITY</span>
